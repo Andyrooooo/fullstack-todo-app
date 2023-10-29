@@ -1,0 +1,9 @@
+{
+    "todos": [
+        {
+        "todoName": "take out the trash",
+        "todoCategory": "Chores",
+        "todoID": 1
+        }
+    ]
+}
