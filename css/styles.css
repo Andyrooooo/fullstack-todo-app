@@ -1,4 +1,4 @@
-body {
+/* body {
   background: black;
 }
 body .todoAppTitle {
@@ -32,7 +32,7 @@ body .newFormSection #newTodoForm .todoCategoryDescription {
 body .todoNameDescription {
   display: block;
   width: 100%;
-  /*   padding-left: 20px; */
+ 
 }
 body .todoInputName {
   width: 100%;
@@ -333,4 +333,4 @@ body .editCategory .editCategoryBTNSection .editCategoryBTN {
 body .editCategory .editCategoryBTNSection .editCategoryBTN:hover {
   background: #3fe5ff;
   box-shadow: 1px 1px 8px #3fe5ff;
-}/*# sourceMappingURL=styles.css.map */
+} */

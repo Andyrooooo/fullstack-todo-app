@@ -37,7 +37,7 @@ let categories = [
 ]
 
 let todos = [
-  {
+  /* {
     todoName: "Take out the trash",
     todoCategory: 0,
     todoID: 1
@@ -56,7 +56,7 @@ let todos = [
     todoName: "Go for a walk",
     todoCategory: 2,
     todoID: 4
-  },
+  }, */
 ]
 
 
@@ -70,7 +70,7 @@ app.get('/todos', (req, res) => {
   // adds a new todo object to the array
   app.post('/todo', (req, res) => {
 
-    console.log('new todo: ', req.body.todoName)
+    console.log('new todo: ', req.body.todoName, req.body.todoCategory, req.body.todoID)
 
     let newTodoID = todos.length === 0 ? 1 : todos.at(-1).todoID + 1
 
@@ -82,6 +82,7 @@ app.get('/todos', (req, res) => {
  
     todos = [...todos, newTodo]
 
+    console.log(todos)
     res.send(todos)
   })
 

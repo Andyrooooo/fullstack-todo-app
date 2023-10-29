@@ -13,74 +13,35 @@
 
   <main>
     <!-- form to add todos -->
-    <div class="newFormSection">
         <form id="newTodoForm">
-            <div class="formDescriptionSection">
                 <label class="todoNameDescription">Add a Description</label>
                 <input class="todoInputName" type="text" />
-            </div>
 
-            <div class="formCategorySection">
                 <label class="todoCategoryDescription">Select a Category</label>
                 <select class="todoSelectCategory">
                     <option value=""></option>
-                    <option value="Fitness">Fitness</option>
-                    <option value="Chores">Chores</option>
-                    <option value="Homework">Homework</option>
                 </select>
-            </div>
          
-            <div class="addBTNContainer">
                 <input type="submit" class="addBTN" value="Add Todo"></input>
-            </div>
         </form>
-    </div>
 
     <button class="removeAllTodos">Remove All</button>
-
     <button class="toggleCategoriesBTN">Adjust Categories</button>
 
-    <div class="deleteEditAddCategories">
         <form id="newTodoCategoryForm">
             <label class="addNewCategory">Add a new category</label>
-
-            <div class="categoryInputSection">
                 <input class="categoryInputName" />
-            </div>
-
-            <div class="categorySubmitBTNSection">
                 <input class="addCategoryBTN" type="submit" value="Add"/>
-            </div>
         </form>
 
-        <div class="deleteCategory">
             <label class="deleteCategoryTitle">Delete a category</label>
-
-            <div class="deleteCategorySelectSection">
                 <select class="deleteCategorySelect"></select>
-            </div>
-            
-            <div class="deleteCategoryBTNSection">
                 <button class="deleteCategoryBTN">Delete Category</button>
-            </div>
-        </div>
-
-        <div class="editCategory">
-            <label class="editCategoryTitle">Edit a category</label>
-
-            <div class="editCategorySelectSection">
+     
+                <label class="editCategoryTitle">Edit a category</label>
                 <select class="editCategorySelect"></select>
-            </div>
-
-            <div class="editCategoryInputNameSection">
                 <input class="editCategoryInputName" readonly/>
-            </div>
-            
-            <div class="editCategoryBTNSection">
-            <button class="editCategoryBTN">Add Changes</button>
-            </div>
-        </div>
-    </div>
+                <button class="editCategoryBTN">Add Changes</button>
 
     <!-- displays the todos -->
     <p class="todoMessages"></p>
