@@ -160,7 +160,7 @@ newTodoForm.addEventListener("submit", (e) => {
 })
 
 // creates a new category ----------------------------------------------------------
-newTodoCategoryForm.addEventListener("submit", (e) => {
+newTodoCategoryForm.addEventListener("submit", (e) => { 
    e.preventDefault()
 
    // checks to see if there is no input

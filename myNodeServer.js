@@ -24,39 +24,39 @@ app.use(bodyParser.urlencoded({ extended: true }))
 let categories = [
   {
     categoryName: "Work",
-    categoryID: 0
-  },
-  {
-    categoryName: "School",
     categoryID: 1
   },
   {
-    categoryName: "Fitness",
+    categoryName: "School",
     categoryID: 2
+  },
+  {
+    categoryName: "Fitness",
+    categoryID: 3
   },
 ]
 
 let todos = [
-  /* {
-    todoName: "Take out the trash",
-    todoCategory: 0,
-    todoID: 1
-  },
-  {
-    todoName: "Finish the todo app",
-    todoCategory: 1,
-    todoID: 2
-  },
-  {
-    todoName: "Start my other project",
-    todoCategory: 1,
-    todoID: 3
-  },
-  {
-    todoName: "Go for a walk",
-    todoCategory: 2,
-    todoID: 4
-  }, */
+  // {
+  //   todoName: "Take out the trash",
+  //   todoCategory: 0,
+  //   todoID: 1
+  // },
+  // {
+  //   todoName: "Finish the todo app",
+  //   todoCategory: 1,
+  //   todoID: 2
+  // },
+  // {
+  //   todoName: "Start my other project",
+  //   todoCategory: 1,
+  //   todoID: 3
+  // },
+  // {
+  //   todoName: "Go for a walk",
+  //   todoCategory: 2,
+  //   todoID: 4
+  // },
 ]
 
 
@@ -97,7 +97,7 @@ app.get('/todos', (req, res) => {
       todoToUpdate.todoName = newTodoName
 
       console.log('old todo with new name: ', todoToUpdate)
-      res.send(todos)
+      res.send(todos) 
   })
 
 
@@ -108,6 +108,7 @@ app.get('/todos', (req, res) => {
 
     todos = todos.filter(todo => todo.todoID != requestedTodoID)
 
+    console.log(todos) 
     res.send(todos)
   })
 
@@ -135,25 +136,27 @@ app.get('/todos', (req, res) => {
     res.send(categories)
   })
 
-   // adds a new todo object to the array
+   // adds a new category object to the array 
    app.post('/categories', (req, res) => {
 
     let newCategoryID = categories.length === 0 ? 1 : categories.at(-1).categoryID + 1
 
     let newCategory = {
-      todoName: req.body.categoryName,
-      todoID: newCategoryID
+      categoryName: req.body.categoryName,
+      categoryID: newCategoryID
     }
  
     categories = [...categories, newCategory]
 
-    res.send(categories)
-  })
+    console.log(categories)
 
+    res.send(categories)
+  })  
+ 
 
   // updates a todo objects category in the array
   app.put('/categories/:categoryID', (req, res) => {
-    
+     
     let requestedTodoCategory = req.params.categoryID
     let newCategoryName = req.body.categoryName
 
@@ -168,32 +171,33 @@ app.get('/todos', (req, res) => {
       if (todo.todoCategory == requestedTodoCategory) {
         todo.todoCategory = requestedTodoCategory
         } 
-    })
+    }) 
     // console.log("all categories I requested: ", todos)
     
     console.log(categories, todos)
     res.send(categories)
 })  
-
-
-// deletes a todo category from the object
+ 
+  
+// deletes a todo category from the object  
 app.delete('/categories/:categoryID', (req, res) => {
 
   let requestedTodoCategory = req.params.categoryID
-
-  categories = categories.filter(category => category.categoryID != requestedTodoCategory)
-
-  res.send(categories)
-
+ 
+  categories = categories.filter(category => category.categoryID != requestedTodoCategory) 
+  
+  console.log(categories)   
+  res.send(categories)  
+ 
   // categories = categories.map(category => {
-  //   if (category.categoryID == requestedTodoCategory) {
+  //   if (category.categoryID == requestedTodoCategory) { 
   //     todo.todoCategory = "empty"
-  //   }
+  //   } 
   //   return todo
   // })
-})
+}) 
 
-
+ 
 app.listen(port, () => {
   console.log(`listening at http://localhost:${port}`)
 })
