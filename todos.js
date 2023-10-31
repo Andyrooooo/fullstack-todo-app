@@ -302,29 +302,28 @@ deleteCategoryBTN.addEventListener("click", async () => {
     // } else {
     //     let categoryId = selectedOption.value
 
-        // Send a delete request to the API using the categoryId
-        fetch(`http://localhost:5501/categories/${categoryName}`, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-            }, 
-        })
-        .then(() => {
-            // Remove the selected option from deleteCategorySelect
-            deleteCategorySelect.remove(deleteCategorySelect.selectedIndex)
-            //for loop that grabs todoSelectCategory and editCategorySelect
-            for (let select of [todoSelectCategory, editCategorySelect]) {
-                // for loop that loops though all the options in todoSelectCategory and editCategorySelect
-                for (let i = 0; i < select.options.length; i++) {
-                    // if the value of the option is equal to the categoryName then it will be removed
-                    if (select.options[i].value === categoryName) {
-                        select.remove(i);
-                        break
-                    }
+    // Send a delete request to the API using the categoryId
+    fetch(`http://localhost:5501/categories/${categoryName}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        }, 
+    })
+    .then(() => {
+        // Remove the selected option from deleteCategorySelect
+        deleteCategorySelect.remove(deleteCategorySelect.selectedIndex)
+        //for loop that grabs todoSelectCategory and editCategorySelect
+        for (let select of [todoSelectCategory, editCategorySelect]) {
+            // for loop that loops though all the options in todoSelectCategory and editCategorySelect
+            for (let i = 0; i < select.options.length; i++) {
+                // if the value of the option is equal to the categoryName then it will be removed
+                if (select.options[i].value === categoryName) {
+                    select.remove(i);
+                    break
                 }
             }
-        })
-    // }
+        }
+    })
 })
 
 
