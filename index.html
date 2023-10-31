@@ -3,52 +3,81 @@
  <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/styles.css" />
+  <link href="output.css" rel="stylesheet" />
+  <link href="css/styles.css" rel="stylesheet" />
+  <link
+  href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+  rel="stylesheet"
+  />
   <title>Basic Todo App</title>
  </head>
- <body>
+ <body class="m-4">
   <header>
-   <h1 class="todoAppTitle">Andrew's Todo App</h1>
+   <h1 class="todoAppTitle text-center text-lg">Andrew's Todo App</h1>
   </header>
 
   <main>
     <!-- form to add todos -->
-        <form id="newTodoForm">
-                <label class="todoNameDescription">Add a Description</label>
-                <input class="todoInputName" type="text" />
+    <form id="newTodoForm">
+        
+        <div class="my-4 w-full">
+            <p class="todoNameDescription mb-1 w-full">Add a Description</p>
+            <input class="todoInputName p-4 rounded-md w-full" type="text" />
+        </div>
 
-                <label class="todoCategoryDescription">Select a Category</label>
-                <select class="todoSelectCategory">
-                    <option value=""></option>
-                </select>
-         
-                <input type="submit" class="addBTN" value="Add Todo"></input>
-        </form>
+        <div class="my-4 w-full">
+            <p class="todoCategoryDescription mb-1 w-full">Select a Category</p>
+            <select class="todoSelectCategory p-4 rounded-md w-full">
+                <option value=""></option>
+            </select>
+        </div>
+    
+        <div class="flex justify-between">
+            <input type="submit" class="addBTN basis-full border-sm py-4 px-6 rounded-md  mb-4" value="Add Todo" />
+            <button class="toggleCategoriesBTN basis-full border-sm py-4 px-6 rounded-md mb-4">Adjust Categories</button>
+        </div>
+    </form>
 
 
-    <button class="toggleCategoriesBTN">Adjust Categories</button>
+  
 
-        <form id="newTodoCategoryForm">
-            <label class="addNewCategory">Add a new category</label>
-            <input class="categoryInputName" />
-            <input class="addCategoryBTN" type="submit" value="Add"/>
-        </form>
+    <div class="adjustCategoriesSection flex p-4 mt-6 mb-4 rounded-md">
+        <div class="basis-6/12">
+            <form id="newTodoCategoryForm">
+                <label class="addNewCategory block mb-1">Add a new category</label>
+                <input class="categoryInputName w-full p-4 rounded-md" />
+                <div class="flex justify-center">
+                    <input class="addCategoryBTN addBTN basis-full border-sm py-4 w-full rounded-md my-2" type="submit" value="Add"/>
+                </div>
+            </form>
+        </div>
 
-            <label class="deleteCategoryTitle">Delete a category</label>
-                <select class="deleteCategorySelect">
-                    <option value=""></option>
-                </select>
-                <button class="deleteCategoryBTN">Delete Category</button>
-     
-                <label class="editCategoryTitle">Edit a category</label>
-                <select class="editCategorySelect">
-                    <option value=""></option>
-                </select>
-                <input class="editCategoryInputName" readonly/>
-                <button class="editCategoryBTN">Add Changes</button>
+        <div class="basis-6/12 mt-8">
+            <label class="deleteCategoryTitle block mb-1">Delete a category</label>
+            <select class="deleteCategorySelect  w-full p-4 rounded-md">
+                <option value=""></option>
+            </select>
+            <div class="flex justify-center">
+                <button class="deleteCategoryBTN basis-full border-sm py-4 w-full rounded-md my-2">Delete Category</button>
+            </div>
+        </div>
+
+        <div class="basis-6/12 mt-8">
+            <label class="editCategoryTitle block mb-1">Edit a category</label>
+            <select class="editCategorySelect w-full p-4 rounded-md mb-2">
+                <option value=""></option>
+            </select>
+            <input class="editCategoryInputName w-full p-4 rounded-md mb-2" readonly/>
+            <div class="flex justify-center">
+                <button class="editCategoryBTN w-full border-sm py-4 px-6 rounded-md">Add Changes</button>
+            </div>
+        </div>
+    </div>
 
     <!-- displays the todos -->
-    <p class="todoMessages"></p>
+    <div class="flex justify-center border-t-2 pt-4 border-gray-300">
+        <p class="todoMessages text-white bg-red-600 rounded-xl py-2 px-4 mb-4"></p>
+    </div>
     <ul class="displayTodos"></ul>
 
   </main>

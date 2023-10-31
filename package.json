@@ -4,17 +4,7 @@
     "cors": "^2.8.5",
     "express": "^4.18.2"
   },
-  "devDependencies": {
-    "nodemon": "^3.0.1"
-  },
-  "name": "basic-todo-app",
-  "version": "1.0.0",
-  "main": "main.js",
   "scripts": {
     "devStart": "nodemon myNodeServer.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": ""
+  }
 }

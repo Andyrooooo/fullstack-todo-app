@@ -1,336 +1,112 @@
-/* body {
-  background: black;
-}
-body .todoAppTitle {
-  color: white;
-  text-align: center;
-  text-shadow: 1px 1px 8px rgb(165, 243, 255);
-}
-body .todoNameDescription,
-body .displayTodosTitle {
-  color: white;
-  text-shadow: 1px 1px 8px rgb(165, 243, 255);
-}
-body .newFormSection {
-  border-bottom: 1px solid rgb(62, 62, 62);
-  padding-bottom: 1rem;
-}
-body .newFormSection #newTodoForm {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-body .newFormSection #newTodoForm .formDescriptionSection {
-  flex-basis: 49%;
-}
-body .newFormSection #newTodoForm .addBTNContainer {
-  flex-basis: 100%;
-}
-body .newFormSection #newTodoForm .todoCategoryDescription {
-  color: white;
-}
-body .todoNameDescription {
-  display: block;
-  width: 100%;
- 
-}
-body .todoInputName {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 1rem;
-  margin: 5px 0 1rem 0;
-  outline: none;
-  border: none;
-  border-radius: 20px;
-}
-body .todoInputName:hover {
-  box-shadow: 1px 1px 8px rgb(165, 243, 255);
-}
-body .addBTN {
-  display: block;
-  width: 200px;
-  margin: 0 auto;
-  padding: 1rem 0;
-  border: none;
-  font-size: 1rem;
-  font-weight: 700;
-  border-radius: 5px;
-}
-body .addBTN:hover {
-  background: rgb(165, 243, 255);
-  box-shadow: 1px 1px 8px rgb(136, 200, 210);
-}
-body .removeAllTodos {
-  width: 150px;
-  padding: 1rem 0;
-  border: none;
-  font-size: 1rem;
-  font-weight: 700;
-  margin: 1rem 0 0 0;
-  background: rgb(152, 0, 0);
-  color: white;
-  border-radius: 5px;
-  float: right;
-}
-body .removeAllTodos:hover {
-  background: #fe0000;
-  box-shadow: 1px 1px 30px #ff6565;
-}
-body .todoMessages {
-  color: white;
-  text-align: center;
-  font-weight: 700;
-  text-shadow: 1px 1px 8px rgb(165, 243, 255);
-  margin-top: 3rem;
-}
-body .displayTodos {
-  padding-left: 0;
-  list-style-type: none;
-  margin-bottom: 1rem;
-}
-body .displayTodos .todoListItem {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-}
-body .displayTodos .todoListItem .todoInputDisplayContainer {
-  flex-basis: 61%;
-}
-body .displayTodos .todoListItem .todoInputDisplayName {
-  box-sizing: border-box;
-  padding: 1rem;
-  outline: none;
-  border: none;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-  background: rgb(197, 197, 197);
-  width: 50%;
-}
-body .displayTodos .todoListItem .editTheInput {
-  background: white;
-}
-body .displayTodos .todoListItem .todoNameBTNsContainer {
-  flex-basis: 36%;
-  display: flex;
-  justify-content: space-between;
-}
-body .displayTodos .todoListItem .todoEditNameBTN,
-body .displayTodos .todoListItem .todoDeleteBTN {
-  border: none;
-  font-size: 1rem;
-  font-weight: 700;
-  flex-basis: 47.5%;
-  border-radius: 5px;
-}
-body .displayTodos .todoListItem .todoEditNameBTN {
-  background: rgb(165, 243, 255);
-}
-body .displayTodos .todoListItem .todoEditNameBTN:hover {
-  background: #3fe5ff;
-  box-shadow: 1px 1px 8px #3fe5ff;
-}
-body .displayTodos .todoListItem .todoDeleteBTN {
-  background: rgb(152, 0, 0);
-  color: white;
-}
-body .displayTodos .todoListItem .todoDeleteBTN:hover {
-  background: #ff3333;
-  box-shadow: 1px 1px 8px #ff3333;
-}
-body .displayTodos .todoListItem .todoInputDisplayCategory {
-  box-sizing: border-box;
-  padding: 1rem;
-  outline: none;
-  border: none;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
-  background: rgb(197, 197, 197);
-  width: 50%;
-}
-body .addNewCategory {
-  color: white;
-}
-body .categoriesTitle {
-  color: white;
-}
-body .deleteCategoryTitle, body .editCategoryTitle {
-  color: white;
-}
-body .formCategorySection {
-  flex-basis: 49%;
-}
-body .formCategorySection .todoCategoryDescription {
-  text-shadow: 1px 1px 8px rgb(165, 243, 255);
-}
-body .formCategorySection .todoSelectCategory {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 1rem;
-  margin: 5px 0 1rem 0;
-  outline: none;
-  border: none;
-  border-radius: 20px;
-}
-body .todoSelectCategory:hover {
-  box-shadow: 1px 1px 8px rgb(165, 243, 255);
-}
-body .toggleCategoriesBTN {
-  width: 150px;
-  padding: 1rem 0;
-  border: none;
-  font-size: 1rem;
-  font-weight: 700;
-  margin: 1rem 0 0.5rem 0;
-  background: rgb(165, 243, 255);
-  border-radius: 5px;
-}
-body .toggleCategoriesBTN:hover {
-  background: #3fe5ff;
-  box-shadow: 1px 1px 30px #3fe5ff;
-}
-body .active {
-  background: rgb(25, 25, 25);
-  padding: 0 1rem;
-  border-radius: 5px;
-  box-shadow: 1px 1px 5px rgb(165, 243, 255);
-}
-body .deleteEditAddCategories {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  display: flex;
-}
-body #newTodoCategoryForm {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-body .addNewCategory {
-  width: 100%;
-}
-body .categoryInputSection {
-  flex-basis: 80%;
-}
-body .categoryInputName {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 1rem;
-  margin: 5px 0 1rem 0;
-  outline: none;
-  border: none;
-  border-radius: 20px;
-}
-body .categoryInputName:hover {
-  box-shadow: 1px 1px 8px rgb(165, 243, 255);
-}
-body .categorySubmitBTNSection {
-  flex-basis: 20%;
-}
-body .addCategoryBTN {
-  width: 150px;
-  padding: 1rem 0;
-  border: none;
-  font-size: 1rem;
-  font-weight: 700;
-  border-radius: 5px;
-  float: right;
-}
-body .addCategoryBTN:hover {
-  background: rgb(165, 243, 255);
-  box-shadow: 1px 1px 8px rgb(136, 200, 210);
-}
-body .deleteCategory {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-body .deleteCategory .deleteCategoryTitle {
-  flex-basis: 100%;
-}
-body .deleteCategory .deleteCategorySelectSection {
-  flex-basis: 80%;
-}
-body .deleteCategory .deleteCategoryBTNSection {
-  flex-basis: 20%;
-}
-body .deleteCategory .deleteCategorySelect {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 1rem;
-  margin: 5px 0 1rem 0;
-  outline: none;
-  border: none;
-  border-radius: 20px;
-}
-body .deleteCategory .deleteCategorySelect:hover {
-  box-shadow: 1px 1px 8px rgb(165, 243, 255);
-}
-body .deleteCategory .deleteCategoryBTN {
-  width: 150px;
-  padding: 1rem 0;
-  border: none;
-  font-size: 1rem;
-  font-weight: 700;
-  background: rgb(152, 0, 0);
-  border-radius: 5px;
-  float: right;
-  color: white;
-}
-body .deleteCategory .deleteCategoryBTN:hover {
-  background: #ff3333;
-  box-shadow: 1px 1px 8px #ff3333;
-}
-body .editCategory {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-body .editCategory .editCategoryTitle {
-  flex-basis: 100%;
-}
-body .editCategory .editCategorySelectSection {
-  flex-basis: 39.5%;
-}
-body .editCategory .editCategorySelectSection .editCategorySelect {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 1rem;
-  margin: 5px 0 1rem 0;
-  outline: none;
-  border: none;
-  border-radius: 20px;
-}
-body .editCategory .editCategorySelectSection .editCategorySelect:hover {
-  box-shadow: 1px 1px 8px rgb(165, 243, 255);
-}
-body .editCategory .editCategoryInputNameSection {
-  flex-basis: 39.5%;
-}
-body .editCategory .editCategoryInputNameSection .editCategoryInputName {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 1rem;
-  margin: 5px 0 1rem 0;
-  outline: none;
-  border: none;
-  border-radius: 20px;
-}
-body .editCategory .editCategoryInputNameSection .editCategoryInputName:hover {
-  box-shadow: 1px 1px 8px rgb(165, 243, 255);
-}
-body .editCategory .editCategoryBTNSection {
-  flex-basis: 20%;
-}
-body .editCategory .editCategoryBTNSection .editCategoryBTN {
-  width: 150px;
-  padding: 1rem 0;
-  border: none;
-  font-size: 1rem;
-  font-weight: 700;
-  background: rgb(165, 243, 255);
-  border-radius: 5px;
-  float: right;
-}
-body .editCategory .editCategoryBTNSection .editCategoryBTN:hover {
-  background: #3fe5ff;
-  box-shadow: 1px 1px 8px #3fe5ff;
-} */
+.addBTN {
+    border: 2px solid #000;
+}
+.addBTN:hover {
+    background: black;
+    color: white;
+    box-shadow: 1px 0 2px black;
+}
+
+.toggleCategoriesBTN {
+    border: 2px solid rgb(155, 155, 0);
+    color:rgb(155, 155, 0);
+}
+
+.toggleCategoriesBTN:hover {
+    background: rgb(155, 155, 0);
+    color: white;
+    box-shadow: 1px 0 2px black;
+}
+
+.deleteCategoryBTN {
+    border: 2px solid red;
+    color: red;
+}
+.deleteCategoryBTN:hover {
+    background: red;
+    color: white;
+    box-shadow: 1px 0 2px black;
+}
+
+.editCategoryBTN {
+    border: 2px solid rgb(155, 155, 0);
+    color:rgb(155, 155, 0);
+}
+
+.editCategoryBTN:hover {
+    background: rgb(155, 155, 0);
+    color: white;
+    box-shadow: 1px 0 2px black;
+}
+
+.todoListItem {
+    display: flex;
+    justify-content: space-between;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+}
+.todoInputDisplayName {
+    border: none;
+    outline: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 1rem;
+    border-top-left-radius: .5rem;
+    border-bottom-left-radius: .5rem;
+    width: 50%;
+}
+.todoInputDisplayCategory {
+    border: none;
+    outline: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 1rem;
+    border-top-right-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+    width: 50%;
+}
+.todoInputContainer {
+    flex-basis: 69.5%;
+}
+.todoButtonContainer {
+    flex-basis: 29.5%;
+}
+.todoEditNameBTN {
+    border: 2px solid rgb(155, 155, 0);
+    color:rgb(155, 155, 0);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    width: 49.5%;
+    margin-right: 1%;
+    border-radius: .5rem;
+}
+.todoEditNameBTN:hover {
+    background: rgb(155, 155, 0);
+    color: white;
+    box-shadow: 1px 0 2px black;
+}
+.todoDeleteBTN {
+    border: 2px solid red;
+    color: red;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    width: 49.5%;
+    border-radius: .5rem;
+}
+.todoDeleteBTN:hover {
+    background: red;
+    color: white;
+    box-shadow: 1px 0 2px black;
+}
+.adjustCategoriesSection {
+    border: 1px solid rgb(136, 136, 136);
+    background: rgb(226, 226, 226);
+    box-shadow: 1px 1px 5px black;
+}
+body {
+    background: rgb(226, 226, 226);
+}
+.todoInputNameEdit {
+    background: rgb(123, 123, 123);
+    color: white;
+}

@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const app = express()
 const port = 5501
 // const fs = require('fs')
+// we have cors, body-parser, express, nodemon
 
 app.use(cors())
 app.use(bodyParser.json())
@@ -34,12 +35,12 @@ let categories = [
     categoryName: "Fitness",
     categoryID: 3
   },
-]
-
-let todos = [
+] 
+  
+let todos = [ 
   // {
   //   todoName: "Take out the trash",
-  //   todoCategory: 0,
+  //   todoCategory: 0, 
   //   todoID: 1
   // },
   // {
@@ -155,36 +156,36 @@ app.get('/todos', (req, res) => {
  
 
   // updates a todo objects category in the array
-  app.put('/categories/:categoryID', (req, res) => {
+  app.put('/categories/:oldCategoryName', (req, res) => {
      
-    let requestedTodoCategory = req.params.categoryID
+    let requestedTodoCategory = req.params.oldCategoryName
     let newCategoryName = req.body.categoryName
 
-    let categoryToUpdate = categories.find(category => category.categoryID == requestedTodoCategory)
-    categoryToUpdate.categoryName = newCategoryName
+    let categoryToUpdate = categories.find(category => category.categoryName == requestedTodoCategory)
+    categoryToUpdate.categoryName = newCategoryName  
 
     // let categories = todos.map(todo => todo.todoCategory)
     // let filteredCategories = categories.filter(category => category.todoCategory == newCategoryName)
 
     // keeping this just incase the object keeps old data inside of it
-    todos.forEach(todo => {
-      if (todo.todoCategory == requestedTodoCategory) {
-        todo.todoCategory = requestedTodoCategory
-        } 
-    }) 
+    // categories.forEach(category => {
+    //   if (category.categoryName == newCategoryName) {
+    //     category.categoryName = newCategoryName
+    //   }  
+    // }) 
     // console.log("all categories I requested: ", todos)
     
     console.log(categories, todos)
     res.send(categories)
-})  
+})   
  
   
 // deletes a todo category from the object  
-app.delete('/categories/:categoryID', (req, res) => {
+app.delete('/categories/:categoryName', (req, res) => { 
 
-  let requestedTodoCategory = req.params.categoryID
+  let requestedTodoCategory = req.params.categoryName
  
-  categories = categories.filter(category => category.categoryID != requestedTodoCategory) 
+  categories = categories.filter(category => category.categoryName != requestedTodoCategory) 
   
   console.log(categories)   
   res.send(categories)  

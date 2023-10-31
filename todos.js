@@ -11,37 +11,67 @@ let editCategorySelect = document.querySelector(".editCategorySelect")
 let editCategoryBTN = document.querySelector(".editCategoryBTN")
 let editCategoryInputName = document.querySelector(".editCategoryInputName")
 let toggleCategoriesBTN = document.querySelector(".toggleCategoriesBTN")
-let deleteEditAddCategories = document.querySelector(".deleteEditAddCategories")
-// deleteEditAddCategories.style.display = "none"
+let adjustCategoriesSection = document.querySelector(".adjustCategoriesSection")
+adjustCategoriesSection.style.display = "none"
+
+// function to check how many todos are left in the array --------------------------------------------------------------------
+// Todo messages
+const message = async () => {
+    let response = await fetch('http://localhost:5501/todos')
+    let todos = await response.json()
+    console.log(todos.length)
+    todoMessages.innerText =
+     todos.length === 0
+      ? "Whooohooo there's no more todos! nice"
+      : todos.length === 1
+      ? `You have ${todos.length} todo`
+      : `You have ${todos.length} todos left`
+   }
+message()
 
 
 // Function to create a todo item element also adds edits and deletes the todo --------------------------------------------------------------------------------
 function createTodoItem(todo, category) {
     // List Item
     let todoListItem = document.createElement("li")
+    todoListItem.classList.add("todoListItem")
 
     // Name
     let todoInputDisplayName = document.createElement("input")
     todoInputDisplayName.setAttribute("readonly", "true")
     todoInputDisplayName.value = todo.todoName
+    todoInputDisplayName.classList.add("todoInputDisplayName")
+
+    // button container
+    let todoButtonContainer = document.createElement("div")
+    todoButtonContainer.classList.add("todoButtonContainer")
+
+    // input container
+    let todoInputContainer = document.createElement("div")
+    todoInputContainer.classList.add("todoInputContainer")
 
     // Delete Button
     let todoDeleteBTN = document.createElement("button")
     todoDeleteBTN.innerText = "Delete Todo"
+    todoDeleteBTN.classList.add("todoDeleteBTN")
     
     // Edit Button
     let todoEditNameBTN = document.createElement("button") 
     todoEditNameBTN.innerText = "Edit Name"
+    todoEditNameBTN.classList.add("todoEditNameBTN")
 
     // Category
     let todoInputDisplayCategory = document.createElement("input")
     todoInputDisplayCategory.setAttribute("readonly", "true")
     todoInputDisplayCategory.value = category.categoryName
+    todoInputDisplayCategory.classList.add("todoInputDisplayCategory")
 
-    todoListItem.appendChild(todoInputDisplayName)
-    todoListItem.appendChild(todoInputDisplayCategory)
-    todoListItem.appendChild(todoEditNameBTN)
-    todoListItem.appendChild(todoDeleteBTN)
+    todoInputContainer.appendChild(todoInputDisplayName)
+    todoInputContainer.appendChild(todoInputDisplayCategory)
+    todoListItem.appendChild(todoInputContainer)
+    todoButtonContainer.appendChild(todoEditNameBTN)
+    todoButtonContainer.appendChild(todoDeleteBTN)
+    todoListItem.appendChild(todoButtonContainer)
 
     // Deletes the todo clicked on --------------------------
     todoDeleteBTN.addEventListener("click", async () => {
@@ -67,7 +97,9 @@ function createTodoItem(todo, category) {
                 displayTodos.removeChild(todoListItem)
                 console.log(todos)
             }
+            message()
         })
+  
     }) // end of delete todo
 
 
@@ -77,6 +109,7 @@ function createTodoItem(todo, category) {
         // makes the input editable
         if (todoEditNameBTN.innerText == "Edit Name") {
             todoInputDisplayName.removeAttribute("readonly")
+            todoInputDisplayName.classList.add("todoInputNameEdit")
             todoInputDisplayName.focus()
             todoEditNameBTN.innerText = "Save Name"
         } else {
@@ -93,12 +126,14 @@ function createTodoItem(todo, category) {
             .then(() => {
             // we then return the input back to readonly
             todoInputDisplayName.setAttribute("readonly", "true")
+            todoInputDisplayName.classList.remove("todoInputNameEdit")
             todoEditNameBTN.innerText = "Edit Name"
             console.log(todo)
+            message()
             })
         }
-    })// end of edit event listener
 
+    })// end of edit event listener
     return todoListItem
 }
 
@@ -157,7 +192,7 @@ async function addNewTodo(newTodo) {
 
     let todoItem = createTodoItem(todo, category)
     displayTodos.appendChild(todoItem)
-
+    message()
 }
 
 
@@ -254,55 +289,109 @@ function createCategoryItem(category) {
     let option = document.createElement("option")
     option.value = category.categoryName 
     option.innerText = category.categoryName
-
-    console.log(category)
-
-    // Deletes the category you clicked on --------------------------
-    deleteCategoryBTN.addEventListener("click", async () => {
-
-        console.log("hello")
-        if (category.categoryID === 0) {
-            alert("Please Select a Category")
-            } else if (category.categoryID !== -1) {
-
-            // deletes the todo in our API
-            fetch(`http://localhost:5501/categories/${category.categoryID}`, {
-                method: "DELETE",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            })
-            .then(() => {
-                // deleteSelectedCategory(categories.categoryID)
-            })
-        }
-    }) // end of delete todo 
-    
-    return option
+    return option 
 }
 
-// Deletes the category you clicked on --------------------------
-// deleteCategoryBTN.addEventListener("click", async () => {
+deleteCategoryBTN.addEventListener("click", async () => {
+    let selectedOption = deleteCategorySelect.options[deleteCategorySelect.selectedIndex]
+    let categoryName = selectedOption.value
+    console.log(categoryName)
 
-//     if (categories.categoryID === 0) {
-//         alert("Please Select a Category")
-//         } else if (categories.categoryID !== -1) {
+    // if (selectedOption.value === "") {
+    //     alert("Please Select a Category")
+    // } else {
+    //     let categoryId = selectedOption.value
 
-//         // deletes the todo in our API
-//         fetch(`http://localhost:5501/categories/${categories.categoryID}`, {
-//             method: "DELETE",
-//             headers: {
-//                 "Content-Type": "application/json",
-//             },
-//         })
-//         .then(() => {
-//             deleteSelectedCategory(categories.categoryID)
-//         })
-//     }
-// }) // end of delete todo 
+        // Send a delete request to the API using the categoryId
+        fetch(`http://localhost:5501/categories/${categoryName}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            }, 
+        })
+        .then(() => {
+            // Remove the selected option from deleteCategorySelect
+            deleteCategorySelect.remove(deleteCategorySelect.selectedIndex)
+            //for loop that grabs todoSelectCategory and editCategorySelect
+            for (let select of [todoSelectCategory, editCategorySelect]) {
+                // for loop that loops though all the options in todoSelectCategory and editCategorySelect
+                for (let i = 0; i < select.options.length; i++) {
+                    // if the value of the option is equal to the categoryName then it will be removed
+                    if (select.options[i].value === categoryName) {
+                        select.remove(i);
+                        break
+                    }
+                }
+            }
+        })
+    // }
+})
 
-// function deleteSelectedCategory(categoryID) {
-//     deleteCategorySelect.remove(categoryID)
-//     todoSelectCategory.remove(categoryID)
-//     editCategorySelect.remove(categoryID)
-// }
+
+// edit category button event listener ------------------------------------------------
+editCategorySelect.addEventListener("change", () => {
+    let selectedOptionIndex = editCategorySelect.selectedIndex
+
+    if (selectedOptionIndex === 0) {
+      editCategoryInputName.removeAttribute("readonly")
+      editCategoryInputName.value = ""
+    } else if (selectedOptionIndex !== 0) {
+        editCategoryInputName.removeAttribute("readonly")
+        editCategoryInputName.value = editCategorySelect.value
+        editCategoryInputName.focus()
+    }
+})
+
+
+// edits the category name ------------------------------------------------
+editCategoryBTN.addEventListener("click", async () => {
+    let response = await fetch('http://localhost:5501/categories')
+    let categories = await response.json()
+
+    if (editCategorySelect.value === "") {
+        alert("You cannot edit this option")
+        editCategoryInputName.value = ""
+    } else if (editCategorySelect.value !== "") {
+
+        let oldName = editCategorySelect.value
+        let newName = editCategoryInputName.value
+
+        // if the value is the same as the old name then it will assign the value the old name in the updated category object
+        if (oldName) {
+            
+            let updatedcategory = {
+                categoryName: newName
+            }
+
+            fetch(`http://localhost:5501/categories/${oldName}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(updatedcategory),
+            })
+            .then(() => {
+                editCategoryInputName.setAttribute("readonly", "true")
+                editCategoryInputName.value = ""
+                editCategorySelect.value = ""
+
+                //for loop that grabs todoSelectCategory and deleteCategorySelect and editCategorySelect
+                for (let select of [editCategorySelect, todoSelectCategory, deleteCategorySelect]) {
+                    // for loop that loops though all the options in todoSelectCategory and deleteCategorySelect and editCategorySelect
+                    for (let i = 0; i < select.options.length; i++) {
+                        // if the value of the option is equal to the categoryName then it will be removed
+                        if (select.options[i].value === oldName) {
+                            select.options[i].value = newName
+                            select.options[i].innerText = newName
+                            break
+                        }
+                    }
+                } // end of for loop
+            }) // end of .then function
+        } // end of if statement
+    } // end of else if statement
+})
+
+toggleCategoriesBTN.addEventListener("click", () => {
+    adjustCategoriesSection.style.display = adjustCategoriesSection.style.display === "none" ? "block" : "none"
+})
