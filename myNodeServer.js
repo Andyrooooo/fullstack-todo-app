@@ -65,7 +65,7 @@ let todos = [
 // grabs all todos in the array
 app.get('/todos', (req, res) => {
     res.send(todos)
-  })
+})
 
 
   // adds a new todo object to the array

@@ -284,6 +284,7 @@ async function addNewCategory(newCategory) {
     editCategorySelect.appendChild(categoryItem.cloneNode(true))
 }
 
+
 // function to create a category item element ------------------------------------------------
 function createCategoryItem(category) {
     let option = document.createElement("option")
@@ -390,6 +391,8 @@ editCategoryBTN.addEventListener("click", async () => {
         } // end of if statement
     } // end of else if statement
 })
+
+
 
 toggleCategoriesBTN.addEventListener("click", () => {
     adjustCategoriesSection.style.display = adjustCategoriesSection.style.display === "none" ? "block" : "none"
